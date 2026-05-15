@@ -201,3 +201,8 @@ button:hover {
     display: flex; align-items: center; justify-content: center;
     background: rgba(255, 255, 255, 0.1); border: 1px solid var(--primary);
 }
+
+.version{
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+}

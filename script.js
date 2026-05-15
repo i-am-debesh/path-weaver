@@ -502,27 +502,31 @@ function drawSmoothPath(points, color, width) {
 //     });
 // }
 
+
 function draw() {
-    // 1. Clear the canvas (Handles High-DPI scaling)
     const dpr = window.devicePixelRatio || 1;
     ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
 
-    // 2. Setup Line Style for smoothness
+    // Setup High Quality Line Settings
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
     
-    // Dynamic thickness based on level density
+    const isMobile = window.innerWidth < 768;
     const pairCount = dots.length / 2;
     const pathWidth = Math.max(6, 12 - (pairCount * 0.5));
     const dotRadius = Math.max(15, 22 - (pairCount * 0.8));
 
-    // 3. Draw Completed Paths with Smoothing
+    // 1. Draw Saved Paths
     paths.forEach(p => {
         ctx.beginPath();
         ctx.strokeStyle = p.color;
         ctx.lineWidth = pathWidth;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = p.color;
+        
+        // Only show glow on Desktop to save Mobile battery/CPU
+        if (!isMobile) {
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = p.color;
+        }
 
         if (p.points.length > 0) {
             ctx.moveTo(p.points[0].x, p.points[0].y);
@@ -535,15 +539,15 @@ function draw() {
             ctx.lineTo(last.x, last.y);
         }
         ctx.stroke();
-        ctx.shadowBlur = 0;
+        ctx.shadowBlur = 0; // Reset glow
     });
 
-    // 4. Draw Active Path (The one you are currently dragging)
+    // 2. Draw Active Path (The one you are currently drawing)
     if (isDrawing && currentPath.length > 0) {
         ctx.beginPath();
         ctx.strokeStyle = startDot.color;
         ctx.lineWidth = pathWidth;
-        ctx.globalAlpha = 0.5;
+        ctx.globalAlpha = 0.6;
 
         ctx.moveTo(currentPath[0].x, currentPath[0].y);
         for (let i = 1; i < currentPath.length - 1; i++) {
@@ -557,13 +561,13 @@ function draw() {
         ctx.globalAlpha = 1.0;
     }
 
-    // 5. Draw Obstacles
+    // 3. Draw Obstacles
     obstacles.forEach(obs => {
         ctx.beginPath();
         ctx.arc(obs.x, obs.y, dotRadius * 0.7, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+        ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
         ctx.fill();
-        ctx.strokeStyle = "rgba(255, 255, 255, 0.4)";
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
         ctx.lineWidth = 2;
         const s = dotRadius * 0.3;
         ctx.moveTo(obs.x - s, obs.y - s); ctx.lineTo(obs.x + s, obs.y + s);
@@ -571,11 +575,13 @@ function draw() {
         ctx.stroke();
     });
 
-    // 6. Draw Dots (Nodes) on top
+    // 4. Draw Dots
     dots.forEach(d => {
         ctx.save();
-        ctx.shadowBlur = d.connected ? 20 : 10;
-        ctx.shadowColor = d.color;
+        if (!isMobile) {
+            ctx.shadowBlur = d.connected ? 20 : 10;
+            ctx.shadowColor = d.color;
+        }
         ctx.beginPath();
         ctx.arc(d.x, d.y, dotRadius, 0, Math.PI * 2);
         ctx.fillStyle = d.color;
