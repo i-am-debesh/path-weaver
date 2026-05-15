@@ -5,7 +5,11 @@ if ('serviceWorker' in navigator) {
       .catch(err => console.error('Service Worker failed:', err));
   });
 }
+//bg music functions:::
 
+const music = document.getElementById('bgMusic');
+music.play();
+music.loop = true;
 // --- 1. PERSISTENCE & STATE ---
 let currentLevel = parseInt(localStorage.getItem('pathWeaverLevel')) || 1;
 let soundEnabled = localStorage.getItem('soundEnabled') !== 'false';
@@ -15,6 +19,7 @@ let paths = [];
 let currentPath = [];
 let isDrawing = false;
 let startDot = null;
+let isplaying = true;
 
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
@@ -600,6 +605,13 @@ function toggleSound() {
     soundEnabled = !soundEnabled;
     localStorage.setItem('soundEnabled', soundEnabled);
     updateHomeUI();
+    if(isplaying === false) {
+        music.play();
+        isplaying = true;
+    }else {
+        music.pause();
+        isplaying = false;
+    }
 }
 
 function resetLevel() { loadLevel(currentLevel); }
@@ -625,3 +637,4 @@ function updateProgress() {
     const percentage = (connectedCount / totalPairs) * 100;
     document.getElementById('level-progress').style.width = percentage + '%';
 }
+

@@ -1,10 +1,11 @@
-const cacheName = 'pathweaver-v1.1'; // Increment this (v3, v4) when you update your code
+const cacheName = 'pathweaver-v1.2'; // Increment this (v3, v4) when you update your code
 const staticAssets = [
   './',
   './index.html',
   './style.css',
   './script.js',
-  './logo.svg'
+  './logo.svg',
+  './bg.mp3'
 
 ];
 
