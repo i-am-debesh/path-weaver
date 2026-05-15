@@ -1,0 +1,18 @@
+{
+  "short_name": "PathWeaver",
+  "name": "PathWeaver: Infinite Puzzle",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#050508",
+  "display": "standalone",
+  "scope": "./",
+  "theme_color": "#00f2ff",
+  "description": "A relaxing infinite path-connecting puzzle game."
+}

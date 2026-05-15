@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PathWeaver: Infinite Puzzle</title>
+    <!-- Manifest & Favicon -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="logo.svg?v=2">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="home-screen" class="screen">
+    <div class="glass-card">
+        <div class="logo-container">
+            <div class="logo-glow"></div>
+            <h1>PATH WEAVER</h1>
+        </div>
+        <!-- <p>CYBER-LINK INTERFACE ACTIVE</p> -->
+        <div id="save-info"></div>
+        <button class="main-btn" onclick="startGame()">PLAY</button>
+        <button class="reset-btn" onclick="clearSave()">RESET ALL DATA</button>
+    </div>
+    </div>
+
+    <div id="game-screen" class="screen" style="display:none;">
+        <!-- Custom UI Alert Modal -->
+        <div id="game-modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content">
+                <h2 id="modal-title">TITLE</h2>
+                <p id="modal-body">Message goes here...</p>
+                <button onclick="closeModal()">CONTINUE</button>
+            </div>
+        </div>
+
+        <!-- In-Game Sound Menu -->
+        <div class="sound-control">
+            <button id="sound-toggle" onclick="toggleSound()">
+                <span id="sound-icon">🔊</span>
+            </button>
+        </div>
+        <div class="game-header">
+             <div class="progress-container">
+                <div id="level-progress" class="progress-bar"></div>
+            </div>
+            <div class="level-badge">LVL <span id="level-num">1</span></div>
+            <div class="controls">
+                <button class="icon-btn" title="Reset Level" onclick="resetLevel()">⟲</button>
+                <button class="icon-btn" title="Main Menu" onclick="showHome()">⌂</button>
+            </div>
+        </div>
+        
+        <div id="canvas-boundary">
+            <canvas id="gameCanvas"></canvas>
+        </div>
+        
+        <div class="footer-hint">Connect matching nodes without intersection</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

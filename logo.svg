@@ -1,0 +1,16 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Glow -->
+  <rect width="32" height="32" rx="6" fill="#050508"/>
+  
+  <!-- The Path -->
+  <path d="M8 24C8 24 8 16 16 16C24 16 24 8 24 8" stroke="#00f2ff" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- The Nodes -->
+  <circle cx="8" cy="24" r="4" fill="#ff4757">
+    <animate attributeName="r" values="3.5;4.5;3.5" dur="2s" repeatCount="indefinite" />
+  </circle>
+  
+  <circle cx="24" cy="8" r="4" fill="#00f2ff">
+    <animate attributeName="r" values="4.5;3.5;4.5" dur="2s" repeatCount="indefinite" />
+  </circle>
+</svg>

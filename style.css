@@ -1,0 +1,203 @@
+body, html { margin: 0; height: 100%; background: #0f0f12; font-family: 'Segoe UI', sans-serif; color: white; overflow: hidden; }
+.screen { position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+#home-screen h1 { font-size: 4rem; letter-spacing: 5px; color: #2ed573; text-shadow: 0 0 20px rgba(46, 213, 115, 0.5); }
+button { 
+    padding: 15px 40px; font-size: 1.2rem; cursor: pointer; border: none; border-radius: 50px;
+    background: #2ed573; color: #0f0f12; font-weight: bold; transition: 0.3s; margin-top: 20px;
+}
+button:hover { transform: scale(1.1); background: #5dfd91; }
+
+#ui { position: absolute; top: 20px; left: 20px; display: flex; gap: 15px; align-items: center; pointer-events: none; }
+#ui button { pointer-events: auto; padding: 8px 15px; font-size: 0.9rem; margin: 0; background: #333; color: white; }
+canvas { display: block; cursor: crosshair; }
+/* Add this to your style.css */
+#ui { 
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    justify-content: space-around;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+#ui h2 { font-size: 1.2rem; margin: 0; }
+
+#ui button {
+    pointer-events: auto;
+    padding: 10px 15px;
+    font-size: 0.8rem;
+}
+
+canvas {
+    touch-action: none; /* Prevents the browser from scrolling while drawing */
+}
+:root {
+    --primary: #00f2ff;
+    --bg: #0a0b10;
+    --panel: rgba(255, 255, 255, 0.05);
+}
+
+body {
+    background-color: var(--bg);
+    background-image: radial-gradient(circle at center, #1a1c2c 0%, #0a0b10 100%);
+    margin: 0;
+    touch-action: none;
+}
+
+/* Home Screen Card */
+.glass-card {
+    background: var(--panel);
+    backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Header Styling */
+.game-header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+/* THE BOUNDARY */
+#canvas-boundary {
+    position: relative;
+    width: 90vw;
+    /* Aspect ratio keeps the board shape consistent */
+    aspect-ratio: 4 / 5; 
+    max-width: 450px;
+    /* Max height for mobile to keep it from stretching too far */
+    max-height: 60vh; 
+    border: 2px solid var(--primary);
+    border-radius: 15px;
+    background: #000;
+    margin: 10px auto; /* Centered with less top margin */
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+}
+
+/* Adjust for very small screens */
+@media (max-height: 700px) {
+    #canvas-boundary {
+        max-height: 55vh;
+    }
+}
+#gameCanvas {
+    transition: opacity 0.5s ease-in-out;
+}
+canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    #canvas-boundary {
+        width: 92vw;
+        height: 75vh;
+    }
+}
+:root {
+    --primary: #00f2ff;
+    --secondary: #7000ff;
+    --danger: #ff4757;
+    --bg: #050508;
+}
+
+body {
+    background: var(--bg);
+    color: white;
+    font-family: 'Orbitron', sans-serif; /* A futuristic font if available */
+}
+
+/* Pulsing Logo Effect */
+.logo-container { position: relative; margin-bottom: 20px; }
+.logo-glow {
+    position: absolute; width: 100%; height: 100%;
+    background: var(--primary); filter: blur(40px); opacity: 0.2;
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.1; }
+    50% { transform: scale(1.2); opacity: 0.3; }
+    100% { transform: scale(1); opacity: 0.1; }
+}
+
+/* Button Styling */
+button {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.3s;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: var(--primary);
+    color: var(--bg);
+    box-shadow: 0 0 20px var(--primary);
+}
+
+.reset-btn {
+    border-color: #444; color: #888; font-size: 0.7rem; margin-top: 20px;
+}
+
+/* Game Header Badge */
+.level-badge {
+    background: rgba(0, 242, 255, 0.1);
+    border: 1px solid var(--primary);
+    padding: 5px 20px;
+    border-radius: 20px;
+    color: var(--primary);
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+}
+
+.icon-btn {
+    border-radius: 50%; width: 45px; height: 45px; padding: 0; line-height: 40px;
+}
+
+.footer-hint {
+    margin-top: 15px; font-size: 0.8rem; color: #555; letter-spacing: 1px;
+}
+
+/* Modal UI */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85); display: flex; align-items: center;
+    justify-content: center; z-index: 1000; backdrop-filter: blur(5px);
+}
+.modal-content {
+    background: #161b22; border: 2px solid var(--primary);
+    padding: 2rem; border-radius: 15px; text-align: center;
+    box-shadow: 0 0 30px rgba(0, 242, 255, 0.3); max-width: 80%;
+}
+.modal-content h2 { color: var(--primary); margin-top: 0; }
+
+/* Sound Button in Corner */
+.sound-control {
+    position: absolute; bottom: 20px; right: 20px; z-index: 10;
+}
+#sound-toggle {
+    width: 50px; height: 50px; border-radius: 50%; padding: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255, 255, 255, 0.1); border: 1px solid var(--primary);
+}
